@@ -1,6 +1,15 @@
 name: Shell Commands
 
 on:
+  push: 
+    branches:
+      - master
+      - 'feature/*'  # pattern matching, matches feature/featA, but not feature/feat/a
+      - 'feature/**' # pattern matching, matches feature/feat/a
+    tags:
+      - v1.*
+
+         
   repository_dispatch:
     types: ["build"]
 
@@ -8,6 +17,8 @@ jobs:
   run-shell-command:
     runs-on: ubuntu-latest
     steps: 
+      - name: payload
+        run: echo ${{ github.event.client_payload.env }}
       - name: echo a string
         run: echo "Hello world"
       - name: multiline script
