@@ -6,13 +6,9 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: List files
-        run: | 
-          pwd
-          ls
       - name: Checkout 
         uses: actions/checkout@v1
-      - name: List files after the checkout action
+      - name: List files
         run: | 
           pwd
           ls
